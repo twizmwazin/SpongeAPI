@@ -30,6 +30,10 @@ import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.data.DataQuery;
+import org.spongepowered.api.service.persistence.data.MemoryDataContainer;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
@@ -63,7 +67,7 @@ import javax.annotation.Nullable;
  * @see Selector
  * @see Score
  */
-public abstract class Text {
+public abstract class Text implements DataSerializable {
 
     protected final TextColor color;
     protected final TextStyle style;
@@ -194,6 +198,30 @@ public abstract class Text {
     public abstract TextBuilder builder();
 
     @Override
+    public DataContainer toContainer() {
+        DataContainer container = new MemoryDataContainer();
+        if (this.color != TextColors.NONE) {
+            container.set(new DataQuery("color"), this.color);
+        }
+        if (!this.style.isEmpty()) {
+            container.set(new DataQuery("style"), this.style);
+        }
+        if (!this.children.isEmpty()) {
+            container.set(new DataQuery("children"), this.children);
+        }
+        if (this.clickAction.isPresent()) {
+            container.set(new DataQuery("clickAction"), this.clickAction.get());
+        }
+        if (this.hoverAction.isPresent()) {
+            container.set(new DataQuery("hoverAction"), this.hoverAction.get());
+        }
+        if (this.shiftClickAction.isPresent()) {
+            container.set(new DataQuery("shiftClickAction"), this.shiftClickAction.get());
+        }
+        return container;
+    }
+
+    @Override
     public boolean equals(@Nullable Object o) {
         if (this == o) {
             return true;
@@ -278,6 +306,13 @@ public abstract class Text {
         @Override
         public TextBuilder.Literal builder() {
             return new TextBuilder.Literal(this);
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            DataContainer container = super.toContainer();
+            container.set(new DataQuery("content"), this.content);
+            return container;
         }
 
         @Override
@@ -373,6 +408,14 @@ public abstract class Text {
         }
 
         @Override
+        public DataContainer toContainer() {
+            DataContainer container = super.toContainer();
+            container.set(new DataQuery("translation"), this.translation);
+            container.set(new DataQuery("arguments"), this.arguments);
+            return container;
+        }
+
+        @Override
         public boolean equals(@Nullable Object o) {
             if (this == o) {
                 return true;
@@ -451,6 +494,13 @@ public abstract class Text {
         @Override
         public TextBuilder.Selector builder() {
             return new TextBuilder.Selector(this);
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            DataContainer container = super.toContainer();
+            container.set(new DataQuery("selector"), this.selector);
+            return container;
         }
 
         @Override
@@ -544,6 +594,16 @@ public abstract class Text {
         @Override
         public TextBuilder.Score builder() {
             return new TextBuilder.Score(this);
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            DataContainer container = super.toContainer();
+            container.set(new DataQuery("score"), this.score);
+            if (this.override.isPresent()) {
+                container.set(new DataQuery("override"), this.override);
+            }
+            return container;
         }
 
         @Override

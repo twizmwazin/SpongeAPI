@@ -26,6 +26,10 @@ package org.spongepowered.api.text.title;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.data.DataQuery;
+import org.spongepowered.api.service.persistence.data.MemoryDataContainer;
 import org.spongepowered.api.text.Text;
 
 import javax.annotation.Nullable;
@@ -38,7 +42,7 @@ import javax.annotation.Nullable;
  * <p>All properties of a title are optional - if they are not set it will use
  * the current default values from the client.</p>
  */
-public class Title {
+public class Title implements DataSerializable {
 
     protected final Optional<Text> title;
     protected final Optional<Text> subtitle;
@@ -164,6 +168,29 @@ public class Title {
      */
     public TitleBuilder builder() {
         return new TitleBuilder(this);
+    }
+
+    @Override
+    public DataContainer toContainer() {
+        DataContainer container = new MemoryDataContainer();
+        if (this.title.isPresent()) {
+            container.set(new DataQuery("title"), this.title.get());
+        }
+        if (this.subtitle.isPresent()) {
+            container.set(new DataQuery("subtitle"), this.subtitle.get());
+        }
+        if (this.fadeIn.isPresent()) {
+            container.set(new DataQuery("fadeIn"), this.fadeIn.get());
+        }
+        if (this.stay.isPresent()) {
+            container.set(new DataQuery("stay"), this.stay.get());
+        }
+        if (this.fadeOut.isPresent()) {
+            container.set(new DataQuery("fadeOut"), this.fadeOut.get());
+        }
+        container.set(new DataQuery("clear"), this.clear);
+        container.set(new DataQuery("reset"), this.reset);
+        return container;
     }
 
     @Override

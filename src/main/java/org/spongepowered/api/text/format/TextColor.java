@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.text.Text;
 
 import java.awt.Color;
@@ -33,7 +34,7 @@ import java.awt.Color;
  *
  * @see TextColors
  */
-public interface TextColor {
+public interface TextColor extends DataSerializable {
 
     /**
      * Returns the corresponding {@link Color} for this {@link TextColor}.

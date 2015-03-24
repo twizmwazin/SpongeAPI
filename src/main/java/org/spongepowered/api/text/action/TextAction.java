@@ -27,6 +27,10 @@ package org.spongepowered.api.text.action;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.data.DataQuery;
+import org.spongepowered.api.service.persistence.data.MemoryDataContainer;
 import org.spongepowered.api.text.Text;
 
 import javax.annotation.Nullable;
@@ -40,7 +44,7 @@ import javax.annotation.Nullable;
  * @see HoverAction
  * @see ShiftClickAction
  */
-public abstract class TextAction<R> {
+public abstract class TextAction<R> implements DataSerializable {
 
     protected final R result;
 
@@ -60,6 +64,14 @@ public abstract class TextAction<R> {
      */
     public final R getResult() {
         return this.result;
+    }
+
+    @Override
+    public DataContainer toContainer() {
+        DataContainer container = new MemoryDataContainer();
+        container.set(new DataQuery("type"), getClass().getSimpleName());
+        container.set(new DataQuery("result"), this.result);
+        return container;
     }
 
     @Override

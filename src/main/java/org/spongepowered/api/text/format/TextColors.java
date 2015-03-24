@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.data.MemoryDataContainer;
 import org.spongepowered.api.text.Text;
 
 import java.awt.Color;
@@ -48,6 +50,11 @@ public final class TextColors {
         @Override
         public Color getColor() {
             return this.color;
+        }
+
+        @Override
+        public DataContainer toContainer() {
+            return new MemoryDataContainer();
         }
 
     };

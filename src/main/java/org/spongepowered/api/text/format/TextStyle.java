@@ -28,6 +28,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.service.persistence.data.DataContainer;
+import org.spongepowered.api.service.persistence.data.DataQuery;
+import org.spongepowered.api.service.persistence.data.MemoryDataContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.text.OptBool;
 
@@ -54,7 +58,7 @@ import javax.annotation.Nullable;
  *
  * @see TextStyles
  */
-public class TextStyle {
+public class TextStyle implements DataSerializable {
 
     /**
      * Whether text where this style is applied is bolded.
@@ -495,6 +499,27 @@ public class TextStyle {
         } else {
             return prop1;
         }
+    }
+
+    @Override
+    public DataContainer toContainer() {
+        DataContainer container = new MemoryDataContainer();
+        if (this.bold.isPresent()) {
+            container.set(new DataQuery("bold"), this.bold.get());
+        }
+        if (this.italic.isPresent()) {
+            container.set(new DataQuery("italic"), this.italic.get());
+        }
+        if (this.underline.isPresent()) {
+            container.set(new DataQuery("underline"), this.underline.get());
+        }
+        if (this.strikethrough.isPresent()) {
+            container.set(new DataQuery("strikethrough"), this.strikethrough.get());
+        }
+        if (this.obfuscated.isPresent()) {
+            container.set(new DataQuery("obfuscated"), this.obfuscated.get());
+        }
+        return container;
     }
 
     /**

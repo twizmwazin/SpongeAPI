@@ -26,6 +26,7 @@ package org.spongepowered.api.text.selector;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.service.persistence.DataSerializable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -43,7 +44,7 @@ import java.util.List;
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
  *      Target selectors on the Minecraft Wiki</a>
  */
-public interface Selector {
+public interface Selector extends DataSerializable {
 
     /**
      * Returns the type of this {@link Selector}.
