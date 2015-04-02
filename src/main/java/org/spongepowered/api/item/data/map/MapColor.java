@@ -35,7 +35,7 @@ public interface MapColor {
     /**
      * Gets the RGB color that this {@link MapColor} will be displayed as on a client.
      *
-     * @return The {@link Color} representation of this color.
+     * @return The {@link Color} representation of this color
      */
     Color getRGBColor();
 
@@ -43,7 +43,7 @@ public interface MapColor {
      * Gets the base {@link MapColor} for this specific offset. Will be the same instance
      * if this instance is the base color.
      *
-     * @return The base {@link MapColor} this instance is offset from.
+     * @return The base {@link MapColor} this instance is offset from
      */
     MapColor getBaseColor();
 
@@ -61,7 +61,7 @@ public interface MapColor {
      * 2 - Multiply RGB by 255 each, leading to the same color as the base.
      * 3 - Multiply RGB by 135 each.
      *
-     * @return The shade modifier to the base color.
+     * @return The shade modifier to the base color
      */
     int getShade();
 
@@ -81,7 +81,7 @@ public interface MapColor {
     /**
      * Gets the raw map palette index for advanced manipulation.
      *
-     * @return The index suitable for raw manipulation of map colors.
+     * @return The index suitable for raw manipulation of map colors
      */
     byte getIndex();
 }

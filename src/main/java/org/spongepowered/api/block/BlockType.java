@@ -27,6 +27,7 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.item.ItemBlock;
+import org.spongepowered.api.item.data.map.MapColor;
 import org.spongepowered.api.service.persistence.data.DataHolder;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -131,5 +132,12 @@ public interface BlockType extends Translatable {
      * @return The equivalent {@link ItemBlock}, if available
      */
     Optional<ItemBlock> getHeldItem();
+
+    /**
+     * Gets the {@link MapColor} used when displaying this type on a map.
+     *
+     * @return The {@link MapColor}
+     */
+    MapColor getMapColor();
 
 }

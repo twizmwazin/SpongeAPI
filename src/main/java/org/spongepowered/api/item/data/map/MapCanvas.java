@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.item.data.map;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.google.common.base.Optional;
 
 import java.awt.Color;
@@ -52,6 +53,17 @@ public interface MapCanvas {
      */
     Optional<MapColor> getColorAt(int x, int y);
 
+
+    /**
+     * Gets the {@link MapColor} at the specified pixel position. If the position
+     * is invalid (out of range), the value will be absent. Pixels start at (0,0)
+     * in the top-left corner and go to (width-1, height-1).
+     *
+     * @param position The position of the pixel to get
+     * @return The {@link MapColor} of the pixel if coordinates are valid
+     */
+    Optional<MapColor> getColorAt(Vector2i position);
+
     /**
      * Sets the {@link MapColor} at the specified pixel position. The color will
      * not be set if the position is out of bounds.
@@ -63,6 +75,17 @@ public interface MapCanvas {
      * @param color The {@link MapColor} to set at the position
      */
     void setColorAt(int x, int y, MapColor color);
+
+    /**
+     * Sets the {@link MapColor} at the specified pixel position. The color will
+     * not be set if the position is out of bounds.
+     *
+     * Pixel locations follow the same rules as the {@link #getColorAt(int, int)} method.
+     *
+     * @param position The position of the pixel to set
+     * @param color The {@link MapColor} to set at the position
+     */
+    void setColorAt(Vector2i position, MapColor color);
 
     /**
      * Uses the color matching from {@link org.spongepowered.api.GameRegistry#matchColor(Color)} to
