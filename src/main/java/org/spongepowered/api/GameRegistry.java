@@ -1204,12 +1204,19 @@ public interface GameRegistry {
      */
     GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator, DataContainer settings);
 
-    /*
+    /**
      * Gets a complete list of {@link MapColor}s including the non-base colors.
      *
      * @return The list of all {@link MapColor}s available to be used
      */
     List<MapColor> getCompleteMapColors();
+
+    /**
+     * Gets a list of only the base {@link MapColor}s.
+     *
+     * @return The list of base {@link MapColor}s
+     */
+    List<MapColor> getBaseMapColors();
 
     /**
      * Computes a {@link MapColor} that matches the provided {@link Color}'s
