@@ -29,17 +29,19 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents the data connected to a map
  */
 public interface MapData {
     /**
-     * Gets the world associated with this map's display.
+     * Gets the world associated with this map's display. Virtual maps may have
+     * no world associated with them.
      *
-     * @return The world for this map
+     * @return The world for this map or absent if the map is virtual
      */
-    World getWorld();
+    Optional<World> getWorld();
 
     /**
      * Sets the world associated with this map's display.
@@ -109,7 +111,8 @@ public interface MapData {
 
     /**
      * A virtual map is only backed by it's {@link MapRenderer}s and will not
-     * have any relation
+     * have any relationship to the world.
+     *
      * @return Is this map virtual
      */
     boolean isVirtual();

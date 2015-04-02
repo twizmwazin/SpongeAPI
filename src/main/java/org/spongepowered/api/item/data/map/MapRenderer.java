@@ -28,7 +28,8 @@ package org.spongepowered.api.item.data.map;
 import org.spongepowered.api.entity.player.Player;
 
 /**
- * Plugin classes should implement this interface to create dynamic maps.
+ * Used to dynamically draw a map. This is implemented by plugins to create maps
+ * that can update while they're held.
  */
 public interface MapRenderer {
     /**

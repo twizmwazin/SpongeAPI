@@ -25,6 +25,7 @@
 
 package org.spongepowered.api;
 
+import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.service.persistence.data.DataContainer;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import com.google.common.base.Optional;
@@ -1231,9 +1232,11 @@ public interface GameRegistry {
      * Creates a disk and world based map. The id on this map
      * is a valid id that can be used by {@link #getStoredMapById(String)}.
      *
+     * @param world The {@link World} that the map is backed by
+     * @param center The world coordinates for the center of the map
      * @return The new {@link MapData} for the created map
      */
-    MapData createStoredMap();
+    MapData createStoredMap(World world, Vector2i center);
 
     /**
      * Creates a virtual map for use with renderers. This map's id will be session
