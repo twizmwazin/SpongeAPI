@@ -61,6 +61,8 @@ import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.Fish;
 import org.spongepowered.api.item.GoldenApple;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.data.map.MapColor;
+import org.spongepowered.api.item.data.map.MapData;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
@@ -101,6 +103,7 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -108,6 +111,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -1199,4 +1203,43 @@ public interface GameRegistry {
      */
     GeneratorType registerGeneratorType(String name, Callable<WorldGenerator> generator, DataContainer settings);
 
+    /*
+     * Gets a complete list of {@link MapColor}s including the non-base colors.
+     *
+     * @return The list of all {@link MapColor}s available to be used
+     */
+    List<MapColor> getCompleteMapColors();
+
+    /**
+     * Computes a {@link MapColor} that matches the provided {@link Color}'s
+     * display on the screen best.
+     *
+     * @param color The {@link Color} to match
+     * @return The {@link MapColor} with the closest match
+     */
+    MapColor matchColor(Color color);
+
+    /**
+     * Retrieves the stored map from the disk if it exists.
+     *
+     * @param id The id value of the stored map
+     * @return The stored {@link MapData} if it exists, absent if not
+     */
+    Optional<MapData> getStoredMapById(String id);
+
+    /**
+     * Creates a disk and world based map. The id on this map
+     * is a valid id that can be used by {@link #getStoredMapById(String)}.
+     *
+     * @return The new {@link MapData} for the created map
+     */
+    MapData createStoredMap();
+
+    /**
+     * Creates a virtual map for use with renderers. This map's id will be session
+     * specific and will not be valid outside of that context.
+     *
+     * @return The new {@link MapData} for the created map
+     */
+    MapData createVirtualMap();
 }

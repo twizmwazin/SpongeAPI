@@ -22,13 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.data;
 
-import org.spongepowered.api.item.data.map.MapData;
+package org.spongepowered.api.item.data.map;
+
+import org.spongepowered.api.entity.player.Player;
 
 /**
- * Represents map information backed by an item
+ * Plugin classes should implement this interface to create dynamic maps.
  */
-public interface MapItemData extends ItemData<MapItemData>, MapData {
-
+public interface MapRenderer {
+    /**
+     * Updates the specified map data when the maps is displayed by the viewer.
+     * Specifically whenever the game ticks and players have the map held in their hand.
+     *
+     * @param mapData The {@link MapData} to be modified
+     * @param viewer The player that caused the map to update
+     */
+    void onUpdate(MapData mapData, Player viewer);
 }
