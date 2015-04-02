@@ -35,14 +35,16 @@ import java.util.List;
  */
 public interface MapData {
     /**
-     * Todo: Javadoc
-     * @return
+     * Gets the world associated with this map's display.
+     *
+     * @return The world for this map
      */
     World getWorld();
 
     /**
+     * Sets the world associated with this map's display.
      *
-     * @param world
+     * @param world The new world for this map
      */
     void setWorld(World world);
 
@@ -52,7 +54,7 @@ public interface MapData {
      * represent this map. No guarantee in relation to stored map files on the
      * disk, however it will be unique across server startup and shutdown.
      *
-     * @return This map's unique id.
+     * @return This map's unique id
      */
     String getId();
 
