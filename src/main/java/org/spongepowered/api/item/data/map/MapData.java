@@ -26,10 +26,10 @@
 package org.spongepowered.api.item.data.map;
 
 import com.flowpowered.math.vector.Vector2i;
+import com.google.common.base.Optional;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Represents the data connected to a map

@@ -25,9 +25,10 @@
 
 package org.spongepowered.api.item.data.map;
 
+import com.google.common.base.Optional;
+
 import java.awt.Color;
 import java.awt.Image;
-import java.util.Optional;
 
 /**
  * A class that represents the display of a map item.
