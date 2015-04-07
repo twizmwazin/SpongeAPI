@@ -76,10 +76,24 @@ public interface WorldProperties extends DataSerializable {
 
     /**
      * Sets whether this world should load when the server starts up.
-     * 
+     *
      * @param state Should load on startup
      */
     void setLoadOnStartup(boolean state);
+
+    /**
+     * Gets whether this world will generate spawn when the server starts up.
+     *
+     * @return Generates spawn on startup
+     */
+    boolean generatesSpawnOnStartup();
+
+    /**
+     * Sets whether this world should generate spawn when the server starts up.
+     *
+     * @param state Should generate spawn on startup
+     */
+    void setGenerateSpawnOnStartup(boolean state);
 
     /**
      * Gets whether spawn chunks of this world remain loaded when no players

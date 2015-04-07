@@ -65,6 +65,14 @@ public interface WorldBuilder {
     WorldBuilder loadsOnStartup(boolean state);
 
     /**
+     * Sets whether the world will generate its' spawn when the server starts up.
+     *
+     * @param state Should generate spawn on startup
+     * @return The builder, for chaining
+     */
+    WorldBuilder generateSpawnOnStartup(boolean state);
+
+    /**
      * Sets whether the spawn chunks of the world should remain loaded when no
      * players are present.
      * 

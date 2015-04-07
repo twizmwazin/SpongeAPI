@@ -61,6 +61,13 @@ public interface WorldCreationSettings {
     boolean loadOnStartup();
 
     /**
+     * Gets whether this world will generate it's spawn when the server starts up.
+     *
+     * @return Generate spawn on startup
+     */
+    boolean generatesSpawnOnStartup();
+
+    /**
      * Returns whether spawn chunks of this world remain loaded when no players
      * are present.
      *
