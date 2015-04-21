@@ -100,7 +100,6 @@ org.spongepowered.api.text.format
 org.spongepowered.api.text.selector
 org.spongepowered.api.text.title
 org.spongepowered.api.text.translation
-org.spongepowered.api.text.translation.locale
 org.spongepowered.api.util
 org.spongepowered.api.util.annotation
 org.spongepowered.api.util.ban
