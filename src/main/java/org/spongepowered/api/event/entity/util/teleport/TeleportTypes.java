@@ -22,14 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.reason;
+package org.spongepowered.api.event.entity.util.teleport;
 
-import org.spongepowered.api.event.cause.Cause;
+public final class TeleportTypes {
 
-/**
- * A reason explains a {@link Cause}. For example, a cause might be a fire
- * block, and the reason would be fire spread.
- */
-public interface Reason {
+    public static final TeleportType COMMAND = null;
+    public static final TeleportType PLUGIN = null;
+    public static final TeleportType NETHER_PORTAL = null;
+    public static final TeleportType END_PORTAL = null;
+    public static final TeleportType ENDER_PEARL = null;
+    public static final TeleportType ENTITY_TELEPORT = null;
+    public static final TeleportType UNKNOWN = null;
+
+    private TeleportTypes() {}
 
 }

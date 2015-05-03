@@ -22,4 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human.fishing;
+package org.spongepowered.api.event.entity.util.teleport;
+
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.monster.Enderman;
+import org.spongepowered.api.event.entity.EntityTeleportEvent;
+
+/**
+ * Represents a cause for a {@link EntityTeleportEvent} such that there is an
+ * associated {@link TeleportType} and possibly, an object associated with the
+ * type.
+ *
+ * Examples may include {@link EntityTeleportCause} for an {@link Enderman}
+ * teleporting away from rain, or a {@link Entity} entering a nether portal.
+ */
+public interface TeleportCause {
+
+    /**
+     * Gets the type of the teleport.
+     *
+     * @return The type of teleport
+     */
+    TeleportType getTeleportType();
+
+}

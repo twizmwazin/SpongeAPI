@@ -22,12 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human.fishing;
+package org.spongepowered.api.event.entity.util.teleport;
 
-/**
- * Called when a {@link org.spongepowered.api.entity.living.Human} casts
- * a fishing line.
- */
-public interface HumanCastFishingLineEvent extends HumanFishEvent {
+public interface TeleporterTeleportCause extends TeleportCause {
+
+    //Teleporter getTeleporter(); // todo when we make Teleporters!0
 
 }

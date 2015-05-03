@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player.fishing;
+package org.spongepowered.api.event.entity.util.spawn;
 
+import org.spongepowered.api.entity.Entity;
+
+public interface EntitySpawnCause extends SpawnCause {
+
+    Entity getEntity();
+
+}

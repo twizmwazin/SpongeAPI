@@ -22,14 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.player.fishing;
+package org.spongepowered.api.event.entity.util.damage.source;
 
-import org.spongepowered.api.event.entity.living.human.fishing.HumanRetractFishingLineEvent;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
-/**
- * Called when a {@link org.spongepowered.api.entity.player.Player} retracts
- * a fishing line.
- */
-public interface PlayerRetractFishingLineEvent extends HumanRetractFishingLineEvent, PlayerFishEvent {
+public interface ProjectileDamageSource extends EntityDamageSource {
+
+    @Override
+    Projectile getSource();
+
+    ProjectileSource getShooter();
 
 }

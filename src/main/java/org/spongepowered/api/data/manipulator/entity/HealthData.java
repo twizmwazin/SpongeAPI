@@ -33,14 +33,6 @@ import org.spongepowered.api.entity.living.Living;
 public interface HealthData extends DataManipulator<HealthData> {
 
     /**
-     * Subtracts from the health by the given amount.
-     *
-     * @param amount The damage amount
-     * @return This instance, for chaining
-     */
-    HealthData damage(double amount);
-
-    /**
      * Returns the health amount.
      *
      * <p>The range of the health depends on the object on which this
