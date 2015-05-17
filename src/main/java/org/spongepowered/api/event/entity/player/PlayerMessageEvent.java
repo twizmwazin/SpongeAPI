@@ -22,41 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.message;
+package org.spongepowered.api.event.entity.player;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
- * Describes events when a {@link CommandSource} sends a {@link Text} message.
+ * Describes events where a {@link CommandSource} is a {@link Player}
+ * and has sent a {@link Text} message.
  */
-public interface MessageEvent extends GameEvent {
-
-    /**
-     * Get the command source.
-     *
-     * @return The command source
-     */
-    CommandSource getSource();
-
-    /**
-     * Gets the {@link Text} message created by the {@link CommandSource} before
-     * the calling of this event.
-     * @return The message
-     */
-    Text getOriginalMessage();
-
-    /**
-     * Gets the currently set {@link Text} message.
-     * @return The message
-     */
-    Text getMessage();
-
-    /**
-     * Sets the {@link Text} message.
-     * @param message The new message
-     */
-    void setMessage(Text message);
-
+public interface PlayerMessageEvent extends PlayerEvent, MessageEvent {
+    @Override
+    Player getSource();
 }
