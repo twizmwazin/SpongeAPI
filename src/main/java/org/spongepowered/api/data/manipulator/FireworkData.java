@@ -24,12 +24,19 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.CollectionValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.FireworkEffect;
+
+import java.util.List;
 
 /**
  * Represents data specific to fireworks.
  */
-public interface FireworkData extends ListData<FireworkEffect, FireworkData> {
+public interface FireworkData extends DataManipulator<FireworkData> {
+
+    CollectionValue<List<FireworkEffect>, FireworkData> effects();
 
     /**
      * Gets the flight modifier for this firework.
@@ -42,19 +49,6 @@ public interface FireworkData extends ListData<FireworkEffect, FireworkData> {
      *
      * @return The flight modifier
      */
-    int getFlightModifier();
+    Value<Integer, FireworkData> flightModifier();
 
-    /**
-     * Sets the flight modifier for this firework.
-     *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
-     *
-     * @param flightModifier The flight modifier
-     * @return This instance, for chaining
-     */
-    FireworkData setFlightModifier(int flightModifier);
 }

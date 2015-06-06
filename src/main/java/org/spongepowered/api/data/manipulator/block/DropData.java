@@ -22,25 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.entity;
+package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.data.manipulator.IntData;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.Value;
 
-public interface OrbData extends IntData<OrbData> {
+/**
+ * Signifies that the owner will not drop anything. Usually applicable
+ * to {@link BlockTypes#SKULL}.
+ */
+public interface DropData extends DataManipulator<DropData> {
 
-    /**
-     * Gets how much experience will be added to the player on pickup.
-     *
-     * @return Amount of experience
-     */
-    int getExperience();
-
-    /**
-     * Sets how much experience will be added to the player on pickup.
-     *
-     * @param experience The new amount of experience
-     * @return This instance, for chaining
-     */
-    OrbData setExperience(int experience);
+    Value<Boolean, DropData> willDrop();
 
 }

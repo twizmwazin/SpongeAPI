@@ -22,16 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.monster.Blaze;
+public final class ComparatorTypes {
 
-/**
- * Signifies that an {@link Entity} is on fire, but does not have a
- * set expiration for being aflame. Usually applicable to {@link Blaze}s.
- */
-public interface FlamableData extends DataManipulator<FlamableData> {
+    public static final ComparatorType COMPARE = null;
+    public static final ComparatorType SUBTRACT = null;
+
+    private ComparatorTypes() {
+    }
 
 }

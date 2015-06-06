@@ -22,15 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.block;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.block.tileentity.Comparator;
-import org.spongepowered.api.data.manipulator.SingleValueData;
-import org.spongepowered.api.data.type.Comparison;
+import com.google.common.base.Optional;
 
-/**
- * Represents the {@link Comparator} data.
- */
-public interface ComparisonData extends SingleValueData<Comparison, ComparisonData> {
+public interface CompositeValueStore<S extends CompositeValueStore<S>> extends ValueStore<S> {
+
+    <T extends ValueStore<T>> Optional<T> get(Class<T> storeClass);
+
+    <T extends ValueStore<T>> T tryGet(Class<T> storeClass) throws UnsupportedOperationException;
+
+    <T extends ValueStore<T>> T getOrElse(Class<T> storeClass, T defaultStore);
+
+    boolean supports(Class<? extends ValueStore<?>> storeClass);
 
 }

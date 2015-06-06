@@ -22,12 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import java.util.Comparator;
 
-@CatalogedBy(Comparisons.class)
-public interface Comparison extends CatalogType {
+public interface BoundedValue<E, S extends ValueStore<S>> extends Value<E, S> {
+
+    E getMinValue();
+
+    E getMaxValue();
+
+    Comparator<E> getComparator();
 
 }

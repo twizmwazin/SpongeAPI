@@ -22,14 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.key;
 
-public final class Comparisons {
+public interface Key<E> {
 
-    public static final Comparison COMPARE = null;
-    public static final Comparison SUBTRACT = null;
-
-    private Comparisons() {
-    }
+    Class<E> getKeyClass();
 
 }

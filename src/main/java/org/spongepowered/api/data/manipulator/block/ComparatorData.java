@@ -22,26 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator;
+package org.spongepowered.api.data.manipulator.block;
+
+import org.spongepowered.api.block.tileentity.Comparator;
+import org.spongepowered.api.data.manipulator.VariantData;
+import org.spongepowered.api.data.type.ComparatorType;
 
 /**
- * Represents an abstract {@link SingleValueData} that has an int value.
- *
- * @param <T> The type of implementing data
+ * Represents the {@link Comparator} data.
  */
-public interface IntData<T extends IntData<T>> extends SingleValueData<Integer, T> {
+public interface ComparatorData extends VariantData<ComparatorType, ComparatorData> {
 
-    /**
-     * Gets the minimum value supported by this {@link IntData}.
-     *
-     * @return The minimum supported value
-     */
-    Integer getMinValue();
-
-    /**
-     * Gets the maximum value supported by this {@link IntData}.
-     *
-     * @return The maximum supported value
-     */
-    Integer getMaxValue();
 }

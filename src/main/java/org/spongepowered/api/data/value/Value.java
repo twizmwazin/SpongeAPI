@@ -22,33 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator;
+package org.spongepowered.api.data.value;
 
-import org.spongepowered.api.data.DataManipulator;
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.key.Key;
 
-/**
- * Represents a {@link DataManipulator} that handles a single value with
- * default provided methods to {@link #getValue()} and
- * {@link #setValue(Object)}.
- *
- * @param <V> The value of the data
- * @param <T> The implementing manipulator for comparison
- */
-public interface SingleValueData<V, T extends SingleValueData<V, T>> extends DataManipulator<T> {
+public interface Value<E, S extends ValueStore<S>> extends BaseValue<E> {
 
-    /**
-     * Gets the value of this {@link SingleValueData}.
-     *
-     * @return The stored value
-     */
-    V getValue();
+    E get();
 
-    /**
-     * Sets the value of this {@link SingleValueData}.
-     *
-     * @param value The value to set
-     * @return This instance, for chaining
-     */
-    T setValue(V value);
+    S set(E value);
+
+    boolean exists();
+
+    Optional<E> getDirect();
+
+    @Override
+    Value<E, S> replace(E value);
+
+    Key<E> getKey();
+
+    S getStore();
 
 }

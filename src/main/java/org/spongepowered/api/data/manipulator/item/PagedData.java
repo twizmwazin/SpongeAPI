@@ -24,12 +24,17 @@
  */
 package org.spongepowered.api.data.manipulator.item;
 
-import org.spongepowered.api.data.manipulator.ListData;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.CollectionValue;
 import org.spongepowered.api.text.Text;
+
+import java.util.List;
 
 /**
  * Represents an item that has pages, like a book.
  */
-public interface PagedData extends ListData<Text, PagedData> {
+public interface PagedData extends DataManipulator<PagedData> {
+
+    CollectionValue<List<Text>, PagedData> pages();
 
 }

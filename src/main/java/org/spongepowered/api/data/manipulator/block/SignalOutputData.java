@@ -22,15 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.block;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.block.tileentity.Comparator;
+import org.spongepowered.api.block.tileentity.DaylightDetector;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.DataManipulator;
+import org.spongepowered.api.data.value.BoundedValue;
 
 /**
- * Represents a type of double plant.
+ * Represents a {@link TileEntity} that is signaling a redstone output.
+ * Usually applicable to {@link Comparator}s and {@link DaylightDetector}s.
  */
-@CatalogedBy(DoubleSizePlantTypes.class)
-public interface DoubleSizePlantType extends CatalogType {
+public interface SignalOutputData extends DataManipulator<SignalOutputData> {
+
+    BoundedValue<Integer, SignalOutputData> signalOutput();
 
 }
