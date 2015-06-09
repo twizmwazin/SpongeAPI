@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.manipulator.DataManipulator;
+
 /**
  * A data priority enum. When merging existing data from a {@link DataHolder}
  * and a {@link DataManipulator}, the priority defines which data to retain,
