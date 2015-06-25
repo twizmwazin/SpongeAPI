@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.TargetedLocationData;
@@ -86,32 +87,12 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     void setLocation(Location location);
 
     /**
-     * Moves the entity to the specified location, and sets the rotation.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
-     * </code></ul>
+     * Moves the entity to the specified location. {@link RelativePositions} listed inside the EnumSet are considered relative.
      *
      * @param location The location to set
-     * @param rotation The rotation to set
-     */
-    void setLocationAndRotation(Location location, Vector3d rotation);
-
-    /**
-     * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
-     * listed inside the EnumSet are considered relative.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      */
-    void setLocationAndRotation(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    void setLocation(Location location, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
@@ -123,37 +104,58 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean setLocationSafely(Location location);
 
     /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
-     * </code></ul>
+     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
+     * teleport and also moves this entity's passengers. {@link RelativePositions} listed inside the EnumSet are considered relative.
      *
      * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
+     * @param relativePositions The coordinates to set relatively
      */
-    boolean setLocationAndRotationSafely(Location location, Vector3d rotation);
+    void setLocationSafely(Location location, EnumSet<RelativePositions> relativePositions);
 
     /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity. {@link RelativePositions} listed inside the EnumSet are
-     * considered relative.
+     * Gets the rotation as a Vector3f.
      *
      * <p>The format of the rotation is represented by:</p>
      *
      * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
      * </code></ul>
      *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location
-     *     couldn't be set as no safe location was found
+     * @return The rotation as a Vector3f
      */
-    boolean setLocationAndRotationSafely(Location location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+    Vector3d getRotation();
+
+    /**
+     * Sets the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param rotation The rotation to set the entity to
+     */
+    void setRotation(Vector3d rotation);
+
+    /**
+     * Gets the world attributes of this Entity as a {@link Transform}.
+     * <p>
+     * All changes made to the Transform do not affect this Entity until it is set
+     * back with {@link Entity#setTransform(Transform)}.
+     * @return The Transform
+     */
+    Transform getTransform();
+
+    /**
+     * Sets the {@link Transform}.
+     * <p>
+     * This will set the {@link Location} and the {@link Vector3f} representing the rotation.
+     *
+     * Note: This will call {@link Transform#isValid()} to determine if its valid. If this is false,
+     * it will not be set.
+     * @param transform The new transform
+     * @return True if transform was set, false if not
+     */
+    boolean setTransform(Transform transform);
 
     /**
      * Sets the location of this entity to a new position in a world which does
@@ -194,30 +196,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if the teleport was successful
      */
     boolean transferToWorld(UUID uuid, Vector3d position);
-
-    /**
-     * Gets the rotation as a Vector3f.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @return The rotation as a Vector3f
-     */
-    Vector3d getRotation();
-
-    /**
-     * Sets the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> yaw</code>, <code>y -> pitch</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param rotation The rotation to set the entity to
-     */
-    void setRotation(Vector3d rotation);
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
