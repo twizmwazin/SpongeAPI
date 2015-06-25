@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3f;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.TargetedLocationData;
+import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
@@ -135,6 +136,12 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @param rotation The rotation to set the entity to
      */
     void setRotation(Vector3d rotation);
+
+    /**
+     * Gets the scale of this {@link Entity}. Typically only changes in the case of {@link Animal}s who are babies.
+     * @return The scale
+     */
+    float getScale();
 
     /**
      * Gets the world attributes of this Entity as a {@link Transform}.
