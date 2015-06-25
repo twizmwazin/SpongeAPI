@@ -24,28 +24,38 @@
  */
 package org.spongepowered.api.data.manipulator.entity;
 
-import org.spongepowered.api.data.manipulator.SingleValueData;
-import org.spongepowered.api.world.Location;
+import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.manipulator.MappedData;
+
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents the location of which a data holder may respawn at.
+ * Represents the locations for where a player will respawn in different worlds.
  */
-public interface RespawnLocationData extends SingleValueData<Location, RespawnLocationData> {
+public interface RespawnLocationData extends MappedData<UUID, Vector3d, RespawnLocationData> {
 
     /**
-     * Gets the location of the owned bed spawn.
+     * Gets the position the player will respawn in the given world, or absent
+     * if no position is assigned for that world.
      *
-     * @return The location of the owned bed spawn
+     * @param worldUuid The world to get the position in
+     * @return The respawn position in the world, if available
+     * @throws IllegalArgumentException If the UUID is not a known world UUID
      */
-    Location getRespawnLocation();
+    Optional<Vector3d> getRespawnPosition(UUID worldUuid);
 
     /**
-     * Sets the location of the owned bed spawn. Passing <code>null</code>
-     * will clear it.
+     * Sets the position the player will respawn in, in the given world. Passing
+     * <code>null</code> will clear the position for the world.
      *
-     * @param location The new location of the owned bed spawn
+     * @param worldUuid The world to set the position in
+     * @param position The position within the world the player will respawn at
      * @return This instance, for chaining
+     * @throws IllegalArgumentException If the UUID is not a known world UUID
      */
-    RespawnLocationData setRespawnLocation(Location location);
+    RespawnLocationData setRespawnPosition(UUID worldUuid, @Nullable Vector3d position);
 
 }
